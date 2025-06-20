@@ -17,8 +17,8 @@
     <!-- 3. Recharts -->
     <script src="https://unpkg.com/recharts@2.8.0/umd/Recharts.min.js"></script>
     
-    <!-- 4. Lucide Icons for React -->
-    <script src="https://unpkg.com/lucide-react@0.292.0/dist/umd/lucide-react.min.js"></script>
+    <!-- 4. Lucide Icons -->
+    <script src="https://unpkg.com/lucide@0.292.0/dist/umd/lucide.min.js"></script>
 
     <!-- 5. Babel to transpile JSX in the browser -->
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -47,9 +47,16 @@
       代码现在使用 JSX 语法，更易读和维护。
     -->
     <script type="text/babel">
-        // 从全局的 Recharts 和 LucideReact 对象中解构出需要的组件
+      document.addEventListener('DOMContentLoaded', () => {
+        // 从全局的 Recharts 和 lucide 对象中解构出需要的组件
         const { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, Cell, ReferenceLine, PieChart, Pie, LabelList } = Recharts;
-        const { TrendingUp, TrendingDown, Droplets, PieChart: PieChartIcon, BarChart2 } = LucideReact;
+        // lucide UMD 包会创建一个名为 `lucide` 的全局对象
+        // 我们使用 `lucide.createElement` 来创建图标组件
+        const TrendingUp = () => lucide.createElement(lucide.TrendingUp);
+        const TrendingDown = () => lucide.createElement(lucide.TrendingDown);
+        const Droplets = () => lucide.createElement(lucide.Droplets);
+        const PieChartIcon = () => lucide.createElement(lucide.PieChart);
+        const BarChart2 = () => lucide.createElement(lucide.BarChart2);
 
         // 数据源
         const rawData = [
@@ -370,6 +377,7 @@
 
         // 将App组件渲染到页面
         ReactDOM.render(<App />, document.getElementById('root'));
+      });
     </script>
 
 </body>
