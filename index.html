@@ -7,12 +7,12 @@
     <!-- 引入 Tailwind CSS for styling -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- 引入 React and ReactDOM -->
-    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
-    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
     <!-- 引入 Recharts for charts -->
-    <script src="https://unpkg.com/recharts/umd/Recharts.min.js"></script>
+    <script src="https://unpkg.com/recharts@2.8.0/umd/Recharts.min.js"></script>
     <!-- 引入 Lucide Icons -->
-    <script src="https://unpkg.com/lucide-react@0.292.0/dist/umd/lucide-react.min.js"></script>
+    <script src="https://unpkg.com/lucide@0.292.0/dist/umd/lucide.min.js"></script>
     <!-- 引入 Babel to transpile JSX in the browser -->
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
@@ -40,9 +40,9 @@
       代码现在使用 JSX 语法，更易读和维护。
     -->
     <script type="text/babel">
-        // 从全局的 Recharts 和 Lucide-React 对象中解构出需要的组件
+        // 从全局的 Recharts 和 Lucide 对象中解构出需要的组件
         const { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, Cell, ReferenceLine, PieChart, Pie, LabelList } = Recharts;
-        const { TrendingUp, TrendingDown, Droplets, PieChart: PieChartIcon, BarChart2 } = lucide-react;
+        const { TrendingUp, TrendingDown, Droplets, PieChart: PieChartIcon, BarChart2 } = LucideReact;
 
         // 数据源
         const rawData = [
@@ -228,7 +228,7 @@
                                                 <Tooltip content={<CustomTooltip />} />
                                                 <Legend />
                                                 <ReferenceLine y={0} stroke="#666" strokeDasharray="5 5" />
-                                                <Bar dataKey="netImpact" name="净碳影响" onClick={handleBarClick}>
+                                                <Bar dataKey="netImpact" name="净碳影响" onClick={(payload) => handleBarClick(payload)}>
                                                     {processedData.map((entry, index) => (
                                                         <Cell key={`cell-${index}`}
                                                               fill={entry.netImpact > 0 ? '#4ade80' : '#f87171'}
@@ -248,7 +248,7 @@
                                             <Droplets className="w-6 h-6 mr-2 text-indigo-500" />
                                             {`净影响瀑布图分析: ${selectedProject.name}`}
                                         </h2>
-                                        <p className="text-sm text-gray-500 mb-4">此图展示了“总排放”如何减少基线，以及“总收益”如何增加它，最终形成“净影响”值。</p>
+                                        <p className="text-sm text-gray-500 mb-4">此图展示了"总排放"如何减少基线，以及"总收益"如何增加它，最终形成"净影响"值。</p>
                                         <div style={{ width: '100%', height: 350 }}>
                                             <ResponsiveContainer>
                                                 <BarChart data={waterfallData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
@@ -366,4 +366,4 @@
     </script>
 
 </body>
-</html>
+</html> 
