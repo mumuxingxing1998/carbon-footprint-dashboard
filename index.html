@@ -7,22 +7,6 @@
     <!-- 引入 Tailwind CSS for styling -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- 1. React and ReactDOM -->
-    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
-    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
-    
-    <!-- 2. Peer dependencies for Recharts -->
-    <script src="https://unpkg.com/prop-types@15.8.1/prop-types.min.js"></script>
-    
-    <!-- 3. Recharts -->
-    <script src="https://unpkg.com/recharts@2.8.0/umd/Recharts.min.js"></script>
-    
-    <!-- 4. Lucide Icons -->
-    <script src="https://unpkg.com/lucide@0.292.0/dist/umd/lucide.min.js"></script>
-
-    <!-- 5. Babel to transpile JSX in the browser -->
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-
     <style>
         /* 自定义动画，用于元素淡入效果 */
         @keyframes fadeIn {
@@ -42,12 +26,30 @@
 
     <div id="root"></div>
 
+    <!-- 
+      将所有JS库移到 body 底部，并按正确依赖顺序排列，以确保在执行应用代码前它们都已加载 
+    -->
+    <!-- 1. React and ReactDOM -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    
+    <!-- 2. Peer dependencies for Recharts -->
+    <script src="https://unpkg.com/prop-types@15.8.1/prop-types.min.js"></script>
+    
+    <!-- 3. Recharts -->
+    <script src="https://unpkg.com/recharts@2.8.0/umd/Recharts.min.js"></script>
+    
+    <!-- 4. Lucide Icons -->
+    <script src="https://unpkg.com/lucide@0.292.0/dist/umd/lucide.min.js"></script>
+
+    <!-- 5. Babel to transpile JSX in the browser -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
     <!--
       使用 type="text/babel" 来告诉 Babel 转换这段脚本。
       代码现在使用 JSX 语法，更易读和维护。
     -->
     <script type="text/babel">
-      document.addEventListener('DOMContentLoaded', () => {
         // 从全局的 Recharts 和 lucide 对象中解构出需要的组件
         const { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, Cell, ReferenceLine, PieChart, Pie, LabelList } = Recharts;
         // lucide UMD 包会创建一个名为 `lucide` 的全局对象
@@ -377,7 +379,6 @@
 
         // 将App组件渲染到页面
         ReactDOM.render(<App />, document.getElementById('root'));
-      });
     </script>
 
 </body>
